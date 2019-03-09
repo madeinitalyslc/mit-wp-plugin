@@ -2,19 +2,20 @@
 /**
  * Basic implementation of PluginAwareInterface.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2015 Cedaro, LLC
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin;
+namespace MadeInItalySLC\WP\Plugin;
 
 /**
  * Plugin aware trait.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-trait PluginAwareTrait {
+trait PluginAwareTrait
+{
 	/**
 	 * Main plugin instance.
 	 *
@@ -28,8 +29,20 @@ trait PluginAwareTrait {
 	 * @param  PluginInterface $plugin Main plugin instance.
 	 * @return $this
 	 */
-	public function set_plugin( PluginInterface $plugin ) {
+	public function setPlugin(PluginInterface $plugin)
+	{
 		$this->plugin = $plugin;
+
 		return $this;
+	}
+
+	/**
+	 * Return the main plugin instance
+	 *
+	 * @return PluginInterface
+	 */
+	public function getPlugin(): PluginInterface
+	{
+		return $this->plugin;
 	}
 }

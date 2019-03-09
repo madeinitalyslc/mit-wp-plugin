@@ -2,25 +2,25 @@
 /**
  * Internationalization provider.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2015 Cedaro, LLC
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin\Provider;
+namespace MadeInItalySLC\WP\Plugin\Provider;
 
-use Cedaro\WP\Plugin\HookProviderInterface;
-use Cedaro\WP\Plugin\HooksTrait;
-use Cedaro\WP\Plugin\PluginAwareInterface;
-use Cedaro\WP\Plugin\PluginAwareTrait;
+use MadeInItalySLC\WP\Plugin\HookProviderInterface;
+use MadeInItalySLC\WP\Plugin\HooksTrait;
+use MadeInItalySLC\WP\Plugin\PluginAwareInterface;
+use MadeInItalySLC\WP\Plugin\PluginAwareTrait;
 
 /**
  * Internationalization class.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-class I18n implements PluginAwareInterface, HookProviderInterface {
-
+class I18n implements PluginAwareInterface, HookProviderInterface
+{
 	use HooksTrait, PluginAwareTrait;
 
 	/**
@@ -28,19 +28,22 @@ class I18n implements PluginAwareInterface, HookProviderInterface {
 	 *
 	 * Loads the text domain during the `plugins_loaded` action.
 	 */
-	public function register_hooks() {
-		if ( did_action( 'plugins_loaded' ) ) {
-			$this->load_textdomain();
+	public function registerHooks()
+	{
+		if (did_action('plugins_loaded')) {
+			$this->loadTextDomain();
 		} else {
-			$this->add_action( 'plugins_loaded', 'load_textdomain' );
+			$this->addAction('plugins_loaded', 'loadTextDomain');
 		}
 	}
 
 	/**
 	 * Load the text domain to localize the plugin.
 	 */
-	protected function load_textdomain() {
-		$plugin_rel_path = dirname( $this->plugin->get_basename() ) . '/languages';
-		load_plugin_textdomain( $this->plugin->get_slug(), false, $plugin_rel_path );
+	protected function loadTextDomain()
+	{
+		$plugin_rel_path = dirname($this->plugin->getBasename()) . '/languages';
+
+		load_plugin_textdomain($this->plugin->getSlug(), false, $plugin_rel_path);
 	}
 }

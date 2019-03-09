@@ -2,24 +2,32 @@
 /**
  * Plugin aware interface.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2015 Cedaro, LLC
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin;
+namespace MadeInItalySLC\WP\Plugin;
 
 /**
  * Plugin aware interface.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-interface PluginAwareInterface {
+interface PluginAwareInterface
+{
 	/**
 	 * Set the main plugin instance.
 	 *
 	 * @param  PluginInterface $plugin Main plugin instance.
 	 * @return $this
 	 */
-	public function set_plugin( PluginInterface $plugin );
+	public function setPlugin(PluginInterface $plugin);
+
+	/**
+	 * Get the main plugin instance.
+	 *
+	 * @return PluginInterface
+	 */
+	public function getPlugin();
 }

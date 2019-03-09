@@ -3,3 +3,5 @@ composer.lock
 coverage
 phpcs.log
 vendor
+.idea
+.vscode

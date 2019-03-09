@@ -2,19 +2,20 @@
 /**
  * Plugin factory.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2017 Cedaro, LLC
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin;
+namespace MadeInItalySLC\WP\Plugin;
 
 /**
  * Plugin factory class.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-class PluginFactory {
+class PluginFactory
+{
 	/**
 	 * Create a plugin instance.
 	 *
@@ -24,18 +25,19 @@ class PluginFactory {
 	 *                         the main plugin file.
 	 * @return Plugin Plugin instance.
 	 */
-	public static function create( $slug, $filename = '' ) {
+	public static function create($slug, $filename = '')
+	{
 		// Use the calling file as the main plugin file.
-		if ( empty( $filename ) ) {
-			$backtrace = debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 );
+		if (empty($filename)) {
+			$backtrace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
 			$filename = $backtrace[0]['file'];
 		}
 
-		return ( new Plugin() )
-			->set_basename( plugin_basename( $filename ) )
-			->set_directory( plugin_dir_path( $filename ) )
-			->set_file( $filename )
-			->set_slug( $slug )
-			->set_url( plugin_dir_url( $filename ) );
+		return (new Plugin())
+			->setBasename(plugin_basename($filename))
+			->setDirectory(plugin_dir_path($filename))
+			->setFile($filename)
+			->setSlug($slug)
+			->setUrl(plugin_dir_url($filename));
 	}
 }

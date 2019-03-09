@@ -2,7 +2,7 @@
 /**
  * Plugin interface.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @author    John P. Bloch
  * @author    Brady Vercher
  * @link      https://github.com/johnpbloch/wordpress-dev
@@ -10,21 +10,22 @@
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin;
+namespace MadeInItalySLC\WP\Plugin;
 
 /**
  * Plugin interface.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-interface PluginInterface {
+interface PluginInterface
+{
 	/**
 	 * Retrieve the relative path to the main plugin file from the main plugin
 	 * directory.
 	 *
 	 * @return string
 	 */
-	public function get_basename();
+	public function getBasename();
 
 	/**
 	 * Set the plugin basename.
@@ -32,14 +33,14 @@ interface PluginInterface {
 	 * @param string $basename Relative path from the main plugin directory.
 	 * @return $this
 	 */
-	public function set_basename( $basename );
+	public function setBasename($basename);
 
 	/**
 	 * Retrieve the plugin directory.
 	 *
 	 * @return string
 	 */
-	public function get_directory();
+	public function getDirectory();
 
 	/**
 	 * Set the plugin's directory.
@@ -47,7 +48,7 @@ interface PluginInterface {
 	 * @param  string $directory Absolute path to the main plugin directory.
 	 * @return $this
 	 */
-	public function set_directory( $directory );
+	public function setDirectory($directory);
 
 	/**
 	 * Retrieve the path to a file in the plugin.
@@ -55,14 +56,14 @@ interface PluginInterface {
 	 * @param  string $path Optional. Path relative to the plugin root.
 	 * @return string
 	 */
-	public function get_path( $path = '' );
+	public function getPath($path = '');
 
 	/**
 	 * Retrieve the absolute path for the main plugin file.
 	 *
 	 * @return string
 	 */
-	public function get_file();
+	public function getFile();
 
 	/**
 	 * Set the path to the main plugin file.
@@ -70,14 +71,14 @@ interface PluginInterface {
 	 * @param  string $file Absolute path to the main plugin file.
 	 * @return $this
 	 */
-	public function set_file( $file );
+	public function setFile($file);
 
 	/**
 	 * Retrieve the plugin identifier.
 	 *
 	 * @return string
 	 */
-	public function get_slug();
+	public function getSlug();
 
 	/**
 	 * Set the plugin identifier.
@@ -85,7 +86,7 @@ interface PluginInterface {
 	 * @param  string $slug Plugin identifier.
 	 * @return $this
 	 */
-	public function set_slug( $slug );
+	public function setSlug($slug);
 
 	/**
 	 * Retrieve the URL for a file in the plugin.
@@ -93,7 +94,7 @@ interface PluginInterface {
 	 * @param  string $path Optional. Path relative to the plugin root.
 	 * @return string
 	 */
-	public function get_url( $path = '' );
+	public function getUrl($path = '');
 
 	/**
 	 * Set the URL for plugin directory root.
@@ -101,12 +102,12 @@ interface PluginInterface {
 	 * @param  string $url URL to the root of the plugin directory.
 	 * @return $this
 	 */
-	public function set_url( $url );
+	public function setUrl($url);
 
 	/**
 	 * Register hooks for the plugin.
 	 *
 	 * @param HookProviderInterface $provider Hook provider.
 	 */
-	public function register_hooks( HookProviderInterface $provider );
+	public function registerHooks(HookProviderInterface $provider);
 }

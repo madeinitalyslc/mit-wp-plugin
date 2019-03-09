@@ -2,19 +2,19 @@
 /**
  * Generic plugin implementation.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2015 Cedaro, LLC
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin;
+namespace MadeInItalySLC\WP\Plugin;
 
 /**
  * Main plugin class.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-class Plugin extends AbstractPlugin {
-
+class Plugin extends AbstractPlugin
+{
 	use ContainerAwareTrait;
 }

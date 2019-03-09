@@ -2,21 +2,22 @@
 /**
  * Hook provider interface.
  *
- * @package   Cedaro\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2015 Cedaro, LLC
  * @license   MIT
  */
 
-namespace Cedaro\WP\Plugin;
+namespace MadeInItalySLC\WP\Plugin;
 
 /**
  * Hook provider interface.
  *
- * @package Cedaro\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin
  */
-interface HookProviderInterface {
+interface HookProviderInterface
+{
 	/**
 	 * Registers hooks for the plugin.
 	 */
-	public function register_hooks();
+	public function registerHooks();
 }
