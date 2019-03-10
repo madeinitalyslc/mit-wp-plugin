@@ -105,6 +105,24 @@ interface PluginInterface
 	 * @return $this
 	 */
 	public function setUrl($url);
+    
+    /**
+     * @param string $version
+     * @return $this
+     */
+	public function setVersion(string $version);
+    
+    /**
+     * @return string
+     */
+	public function getVersion();
+    
+    /**
+     * @param string $key
+     * @param null|mixed $default
+     * @return mixed
+     */
+	public function getEnv(string $key, $default = null);
 
 	/**
 	 * Register hooks for the plugin.

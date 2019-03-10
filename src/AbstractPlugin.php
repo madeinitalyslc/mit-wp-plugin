@@ -210,6 +210,22 @@ abstract class AbstractPlugin implements PluginInterface
         
         return $this;
     }
+    
+    /**
+     * @param string $key
+     * @param null|mixed $default
+     * @return array|false|string|null
+     */
+    public function getEnv(string $key, $default = null)
+    {
+        $env = getenv($key);
+        
+        if (!$env) {
+            $env = $default;
+        }
+        
+        return $env;
+    }
 
 	/**
 	 * Register a hook provider.
