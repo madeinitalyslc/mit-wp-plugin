@@ -12,6 +12,8 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+if (\class_exists('AbstractPlugin')) return;
+
 /**
  * Base plugin class.
  *
@@ -55,6 +57,13 @@ abstract class AbstractPlugin implements PluginInterface
 	 * @var string
 	 */
 	protected $url;
+    
+    /**
+     * Version of the plugin
+     *
+     * @var string
+     */
+	protected $version;
 
 	/**
 	 * Retrieve the absolute path for the main plugin file.
@@ -182,6 +191,25 @@ abstract class AbstractPlugin implements PluginInterface
 
 		return $this;
 	}
+    
+    /**
+     * @return string
+     */
+	public function getVersion()
+    {
+        return $this->version;
+    }
+    
+    /**
+     * @param string $version
+     * @return $this
+     */
+    public function setVersion(string $version)
+    {
+        $this->version = $version;
+        
+        return $this;
+    }
 
 	/**
 	 * Register a hook provider.

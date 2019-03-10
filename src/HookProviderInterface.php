@@ -9,6 +9,8 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+if (\interface_exists('HookProviderInterface')) return;
+
 /**
  * Hook provider interface.
  *

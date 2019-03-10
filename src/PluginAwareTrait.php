@@ -9,6 +9,8 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+if (\trait_exists('PluginAwareTrait', true)) return;
+
 /**
  * Plugin aware trait.
  *

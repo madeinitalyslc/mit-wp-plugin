@@ -14,6 +14,8 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+if (\trait_exists('HooksTrait', true)) return;
+
 /**
  * Hooks trait.
  *

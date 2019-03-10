@@ -9,6 +9,8 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+if (\class_exists('Plugin')) return;
+
 /**
  * Main plugin class.
  *

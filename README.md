@@ -25,10 +25,27 @@ A plugin is a simple object created to help bootstrap functionality by allowing 
 use MadeInItalySLC\WP\Plugin\PluginFactory;
 
 if (file_exists( __DIR__.'/vendor/autoload.php')) {
-	require_once __DIR__.'/vendor/autoload.php');
+	require_once __DIR__.'/vendor/autoload.php';
 }
 
-$structure = PluginFactory::create('structure');
+function StucturePlugin() {
+    static $stucture_wp_plugin;
+    
+    if (!$stucture_wp_plugin) {
+        $stucture_wp_plugin = PluginFactory::create('stucture-wp-plugin');
+       
+        $stucture_wp_plugin
+            ->setBasename(plugin_basename(__FILE__))
+            ->setDirectory(plugin_dir_path(__FILE__))
+            ->setFile(__FILE__)
+            ->setSlug('stucture-wp-plugin')
+            ->setUrl(plugin_dir_url(__FILE__));
+    }
+    
+    return $stucture_wp_plugin;
+}
+
+$stucture = StucturePlugin();
 ```
 
 `$stucture` is an instance of `Plugin` and implements the `PluginInterface`, which provides a basic API to access information about the plugin.
@@ -47,8 +64,9 @@ Hook providers are registered with the main plugin instance by calling `Plugin::
 
 ```php
 <?php
-$structure
+$stucture
 	->registerHooks(new \MadeInItalySLC\WP\Plugin\Provider\I18n())
+	->registerHooks(new \MadeInItalySLC\WP\Plugin\Provider\VarDumpServer())
 	->registerHooks(new \Structure\PostType\BookPostType());
 ```
 
@@ -127,7 +145,7 @@ class Assets extends AbstractHookProvider
 	{
 		wp_enqueue_script(
 			'structure',
-			$this->plugin->getUrl('assets/js/structure.js')
+			$this->getPlugin()->getUrl('assets/js/structure.js')
 		);
 	}
 }

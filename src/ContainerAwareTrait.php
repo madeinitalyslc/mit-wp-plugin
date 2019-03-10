@@ -14,6 +14,8 @@ namespace MadeInItalySLC\WP\Plugin;
 
 use Psr\Container\ContainerInterface;
 
+if (\trait_exists('ContainerAwareTrait', true)) return;
+
 /**
  * Container aware trait.
  *

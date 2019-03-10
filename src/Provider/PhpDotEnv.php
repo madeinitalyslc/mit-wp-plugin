@@ -1,6 +1,6 @@
 <?php
 /**
- * Internationalization provider.
+ * PHP Dot Env provider.
  *
  * @package   MadeInItalySLC\WP\Plugin
  * @copyright Copyright (c) 2015 Cedaro, LLC
@@ -9,43 +9,42 @@
 
 namespace MadeInItalySLC\WP\Plugin\Provider;
 
+use Dotenv\Dotenv;
 use MadeInItalySLC\WP\Plugin\HookProviderInterface;
 use MadeInItalySLC\WP\Plugin\HooksTrait;
 use MadeInItalySLC\WP\Plugin\PluginAwareInterface;
 use MadeInItalySLC\WP\Plugin\PluginAwareTrait;
 
-if (\class_exists('I18n')) return;
+if (\class_exists('PhpDotEnv')) return;
 
 /**
- * Internationalization class.
+ * PHP Dot Env class.
  *
  * @package MadeInItalySLC\WP\Plugin
  */
-class I18n implements PluginAwareInterface, HookProviderInterface
+class PhpDotEnv implements PluginAwareInterface, HookProviderInterface
 {
 	use HooksTrait, PluginAwareTrait;
 
 	/**
 	 * Register hooks.
 	 *
-	 * Loads the text domain during the `plugins_loaded` action.
+	 * Loads the php dot env during the `plugins_loaded` action.
 	 */
 	public function registerHooks()
 	{
 		if (did_action('plugins_loaded')) {
-			$this->loadTextDomain();
+			$this->load();
 		} else {
-			$this->addAction('plugins_loaded', 'loadTextDomain');
+			$this->addAction('plugins_loaded', 'load');
 		}
 	}
 
 	/**
-	 * Load the text domain to localize the plugin.
+	 * Load the PHP Dot Env.
 	 */
-	protected function loadTextDomain()
+	protected function load()
 	{
-		$plugin_rel_path = dirname($this->plugin->getBasename()) . '/languages';
-
-		load_plugin_textdomain($this->plugin->getSlug(), false, $plugin_rel_path);
+	    Dotenv::create($this->getPlugin()->getDirectory())->load();
 	}
 }

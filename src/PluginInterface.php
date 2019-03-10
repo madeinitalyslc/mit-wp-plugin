@@ -12,6 +12,8 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+if (\interface_exists('PluginInterface')) return;
+
 /**
  * Plugin interface.
  *

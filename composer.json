@@ -3,8 +3,7 @@
   "description": "A base WordPress plugin library.",
   "license": "MIT",
   "homepage": "https://github.com/madeinitalyslc/mit-wp-plugin",
-  "authors": [
-    {
+  "authors": [{
       "name": "Brady Vercher",
       "email": "brady@blazersix.com",
       "homepage": "https://www.cedaro.com/"
@@ -21,10 +20,13 @@
   },
   "require": {
     "php": ">=7.1.0",
-    "psr/container": "^1.0"
+    "psr/container": "^1.0",
+    "vlucas/phpdotenv": "^3.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "*@stable"
+    "phpunit/phpunit": "*@stable",
+    "symfony/var-dumper": "^4.2",
+    "symfony/console": "^4.2"
   },
   "autoload": {
     "psr-4": {
@@ -37,6 +39,10 @@
     }
   },
   "scripts": {
-    "test": "./vendor/bin/phpunit --coverage-html coverage"
+    "test": "./vendor/bin/phpunit --coverage-html coverage",
+    "var-dump-server": "php vendor/symfony/var-dumper/Resources/bin/var-dump-server"
+  },
+  "config": {
+    "process-timeout": 0
   }
 }
