@@ -9,6 +9,10 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+use MadeInItalySLC\WP\Plugin\Providers\ServiceProvider;
+use Pimple\Container as PimpleContainer;
+use Psr\Container\ContainerInterface;
+
 if (\class_exists('PluginFactory')) return;
 
 /**
@@ -19,27 +23,56 @@ if (\class_exists('PluginFactory')) return;
 class PluginFactory
 {
 	/**
-	 * Create a plugin instance.
-	 *
-	 * @param string $slug     Plugin slug.
-	 * @param string $filename Optional. Absolute path to the main plugin file.
-	 *                         This should be passed if the calling file is not
-	 *                         the main plugin file.
-	 * @return Plugin Plugin instance.
-	 */
-	public static function create($slug, $filename = '')
+     * @param string $slug
+     * @param ContainerInterface|null $container
+     * @param string|null $filename
+     * @return Plugin
+     */
+	public static function create(string $slug, ContainerInterface $container = null, string $filename = null)
 	{
 		// Use the calling file as the main plugin file.
-		if (empty($filename)) {
+		if (!$filename) {
 			$backtrace = debug_backtrace(DEBUG_BACKTRACE_PROVIDE_OBJECT, 1);
 			$filename = $backtrace[0]['file'];
 		}
 
-		return (new Plugin())
+		if (!$container) {
+			$container = new PimpleContainer();
+		}
+
+		$container['plugin.basename'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
+			return plugin_basename($filename);
+		});
+
+		$container['plugin.directory'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
+			return plugin_dir_path($filename);
+		});
+
+		$container['plugin.file'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
+			return $filename;
+		});
+
+		$container['plugin.slug'] = $container->singleton(function (ContainerInterface $container) use ($slug) {
+			return $slug;
+		});
+
+		$container['plugin.url'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
+			return plugin_dir_url($filename);
+		});
+
+		if ($container instanceof PimpleContainer) {
+			$container->register(new ServiceProvider());
+		}
+
+		$plugin = (new Plugin())
 			->setBasename(plugin_basename($filename))
 			->setDirectory(plugin_dir_path($filename))
 			->setFile($filename)
 			->setSlug($slug)
 			->setUrl(plugin_dir_url($filename));
+
+		$plugin->setContainer($container);
+
+		return $plugin;
 	}
 }

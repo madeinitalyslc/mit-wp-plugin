@@ -23,7 +23,7 @@ trait PluginAwareTrait
 	 *
 	 * @var PluginInterface
 	 */
-	protected $plugin;
+	private $plugin;
 
 	/**
 	 * Set the main plugin instance.

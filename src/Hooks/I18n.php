@@ -7,7 +7,7 @@
  * @license   MIT
  */
 
-namespace MadeInItalySLC\WP\Plugin\Provider;
+namespace MadeInItalySLC\WP\Plugin\Hooks;
 
 use MadeInItalySLC\WP\Plugin\HookProviderInterface;
 use MadeInItalySLC\WP\Plugin\HooksTrait;
@@ -17,9 +17,9 @@ use MadeInItalySLC\WP\Plugin\PluginAwareTrait;
 if (\class_exists('I18n')) return;
 
 /**
- * Internationalization class.
+ * Class I18n
  *
- * @package MadeInItalySLC\WP\Plugin
+ * @package MadeInItalySLC\WP\Plugin\Hooks
  */
 class I18n implements PluginAwareInterface, HookProviderInterface
 {
@@ -44,8 +44,8 @@ class I18n implements PluginAwareInterface, HookProviderInterface
 	 */
 	protected function loadTextDomain()
 	{
-		$plugin_rel_path = dirname($this->plugin->getBasename()) . '/languages';
+		$plugin_rel_path = dirname($this->getPlugin()->getBasename()) . '/languages';
 
-		load_plugin_textdomain($this->plugin->getSlug(), false, $plugin_rel_path);
+		load_plugin_textdomain($this->getPlugin()->getSlug(), false, $plugin_rel_path);
 	}
 }

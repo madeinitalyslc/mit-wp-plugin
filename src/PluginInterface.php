@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin interface.
  *
@@ -26,6 +27,7 @@ interface PluginInterface
 	 * directory.
 	 *
 	 * @return string
+     * @deprecated
 	 */
 	public function getBasename();
 
@@ -41,6 +43,7 @@ interface PluginInterface
 	 * Retrieve the plugin directory.
 	 *
 	 * @return string
+     * @deprecated
 	 */
 	public function getDirectory();
 
@@ -64,6 +67,7 @@ interface PluginInterface
 	 * Retrieve the absolute path for the main plugin file.
 	 *
 	 * @return string
+     * @deprecated
 	 */
 	public function getFile();
 
@@ -79,6 +83,7 @@ interface PluginInterface
 	 * Retrieve the plugin identifier.
 	 *
 	 * @return string
+     * @deprecated
 	 */
 	public function getSlug();
 
@@ -95,6 +100,7 @@ interface PluginInterface
 	 *
 	 * @param  string $path Optional. Path relative to the plugin root.
 	 * @return string
+     * @deprecated
 	 */
 	public function getUrl($path = '');
 
@@ -114,15 +120,9 @@ interface PluginInterface
     
     /**
      * @return string
+     * @deprecated
      */
 	public function getVersion();
-    
-    /**
-     * @param string $key
-     * @param null|mixed $default
-     * @return mixed
-     */
-	public function getEnv(string $key, $default = null);
 
 	/**
 	 * Register hooks for the plugin.

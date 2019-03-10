@@ -19,7 +19,7 @@ A plugin is a simple object created to help bootstrap functionality by allowing 
 ```php
 <?php
 /**
- * Plugin Name: Structure
+ * Plugin Name: Stucture
  */
 
 use MadeInItalySLC\WP\Plugin\PluginFactory;
@@ -33,13 +33,6 @@ function StucturePlugin() {
     
     if (!$stucture_wp_plugin) {
         $stucture_wp_plugin = PluginFactory::create('stucture-wp-plugin');
-       
-        $stucture_wp_plugin
-            ->setBasename(plugin_basename(__FILE__))
-            ->setDirectory(plugin_dir_path(__FILE__))
-            ->setFile(__FILE__)
-            ->setSlug('stucture-wp-plugin')
-            ->setUrl(plugin_dir_url(__FILE__));
     }
     
     return $stucture_wp_plugin;
