@@ -2,9 +2,7 @@
 
 namespace MadeInItalySLC\WP\Plugin\Providers;
 
-use MadeInItalySLC\WP\Plugin\Plugin;
-use Pimple\Container;
-use Pimple\ServiceProviderInterface;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 
 if (\class_exists('VarDumperServerProvider')) return;
 
@@ -13,12 +11,17 @@ if (\class_exists('VarDumperServerProvider')) return;
  *
  * @package MadeInItalySLC\WP\Plugin\Providers
  */
-class VarDumpServerProvider implements ServiceProviderInterface
+class VarDumpServerProvider extends AbstractServiceProvider
 {
     /**
-     * @param Container $container
+     * @var array
      */
-	public function register(Container $container)
+    protected $provides = [];
+
+    /**
+     * {@inheritdoc}
+     */
+	public function register()
 	{
         $cloner  = new \Symfony\Component\VarDumper\Cloner\VarCloner();
         $fallbackDumper = \in_array(\PHP_SAPI, array('cli', 'phpdbg')) ? new \Symfony\Component\VarDumper\Dumper\CliDumper() : new \Symfony\Component\VarDumper\Dumper\HtmlDumper();

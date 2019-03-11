@@ -4,13 +4,14 @@ namespace MadeInItalySLC\WP\Plugin\Providers;
 
 use League\Container\Container;
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use League\Container\ServiceProvider\BootableServiceProviderInterface;
 
 /**
  * Class ServiceProvider
  *
  * @package MadeInItalySLC\WP\Plugin\Providers
  */
-class ServiceProvider extends AbstractServiceProvider
+class ServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
     /**
      * @var array
@@ -46,9 +47,17 @@ class ServiceProvider extends AbstractServiceProvider
     }
 
     /**
-     * Register service provider
+     * {@inheritdoc}
      */
     public function register()
+    {
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function boot()
     {
         /** @var Container $container */
         $container = $this->getContainer();
