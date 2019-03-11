@@ -21,12 +21,8 @@ class PhpDotEnvProvider implements ServiceProviderInterface
      */
     public function register(Container $container)
     {
-        $container['php_dot_env'] = function ($c) {
-            $dotenv = Dotenv::create($c['plugin.directory']);
+        $dotenv = Dotenv::create($container['plugin.directory']);
 
-            $dotenv->load();
-
-            return $dotenv;
-        };
+        $dotenv->load();
     }
 }
