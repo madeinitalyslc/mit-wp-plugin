@@ -22,6 +22,13 @@ class PhpDotEnvProvider extends AbstractServiceProvider
         'php_dot_env'
     ];
 
+    private $directory;
+
+    public function __construct($directory)
+    {
+        $this->directory = $directory;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -31,7 +38,7 @@ class PhpDotEnvProvider extends AbstractServiceProvider
         $container = $this->getContainer();
 
         $container->add('php_dot_env', function () {
-            $dotenv = Dotenv::create($this->get('plugin.directory'));
+            $dotenv = Dotenv::create($this->directory);
 
             $dotenv->load();
 
