@@ -11,6 +11,7 @@ namespace MadeInItalySLC\WP\Plugin\Hooks;
 
 use MadeInItalySLC\WP\Plugin\HookProviderInterface;
 use MadeInItalySLC\WP\Plugin\HooksTrait;
+use MadeInItalySLC\WP\Plugin\Plugin;
 use MadeInItalySLC\WP\Plugin\PluginAwareInterface;
 use MadeInItalySLC\WP\Plugin\PluginAwareTrait;
 
@@ -44,8 +45,11 @@ class I18n implements PluginAwareInterface, HookProviderInterface
 	 */
 	protected function loadTextDomain()
 	{
-		$plugin_rel_path = dirname($this->getPlugin()->getBasename()) . '/languages';
+	    /** @var Plugin $plugin */
+	    $plugin = $this->getPlugin();
 
-		load_plugin_textdomain($this->getPlugin()->getSlug(), false, $plugin_rel_path);
+		$plugin_rel_path = dirname($plugin->getContainer()->get('plugin.basename')) . '/languages';
+
+		load_plugin_textdomain($plugin->getContainer()->get('plugin.slug'), false, $plugin_rel_path);
 	}
 }
