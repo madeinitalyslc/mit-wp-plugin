@@ -10,7 +10,6 @@
 namespace MadeInItalySLC\WP\Plugin;
 
 use MadeInItalySLC\WP\Plugin\Providers\ServiceProvider;
-use Pimple\Container as PimpleContainer;
 use Psr\Container\ContainerInterface;
 
 if (\class_exists('PluginFactory')) return;
@@ -22,13 +21,13 @@ if (\class_exists('PluginFactory')) return;
  */
 class PluginFactory
 {
-	/**
+    /**
      * @param string $slug
+     * @param string $filename
      * @param ContainerInterface|null $container
-     * @param string|null $filename
      * @return Plugin
      */
-	public static function create(string $slug, ContainerInterface $container = null, string $filename = null)
+	public static function create(string $slug, string $filename, ContainerInterface $container = null)
 	{
 		// Use the calling file as the main plugin file.
 		if (!$filename) {
@@ -37,32 +36,10 @@ class PluginFactory
 		}
 
 		if (!$container) {
-			$container = new PimpleContainer();
-		}
+		    $container = new \League\Container\Container();
 
-		$container['plugin.basename'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
-			return plugin_basename($filename);
-		});
-
-		$container['plugin.directory'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
-			return plugin_dir_path($filename);
-		});
-
-		$container['plugin.file'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
-			return $filename;
-		});
-
-		$container['plugin.slug'] = $container->singleton(function (ContainerInterface $container) use ($slug) {
-			return $slug;
-		});
-
-		$container['plugin.url'] = $container->singleton(function (ContainerInterface $container) use ($filename) {
-			return plugin_dir_url($filename);
-		});
-
-		if ($container instanceof PimpleContainer) {
-			$container->register(new ServiceProvider());
-		}
+		    $container->addServiceProvider(new ServiceProvider($filename, $slug));
+        }
 
 		$plugin = (new Plugin())
 			->setBasename(plugin_basename($filename))
