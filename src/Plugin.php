@@ -18,5 +18,5 @@ if (\class_exists('Plugin')) return;
  */
 class Plugin extends AbstractPlugin
 {
-	use ContainerAwareTrait;
+
 }

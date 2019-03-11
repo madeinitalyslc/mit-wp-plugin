@@ -12,6 +12,9 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
+use Pimple\Container;
+use Psr\Container\ContainerInterface;
+
 if (\class_exists('AbstractPlugin')) return;
 
 /**
@@ -19,7 +22,7 @@ if (\class_exists('AbstractPlugin')) return;
  *
  * @package MadeInItalySLC\WP\Plugin
  */
-abstract class AbstractPlugin implements PluginInterface
+abstract class AbstractPlugin extends Container implements PluginInterface, ContainerInterface
 {
 	/**
 	 * Plugin basename.
@@ -219,12 +222,30 @@ abstract class AbstractPlugin implements PluginInterface
 	 */
 	public function registerHooks(HookProviderInterface $provider)
 	{
-		if ($provider instanceof PluginAwareInterface) {
-			$provider->setPlugin($this);
+		if ($provider instanceof ContainerAwareInterface) {
+			$provider->setContainer($this);
 		}
 
 		$provider->registerHooks();
 
 		return $this;
 	}
+
+    /**
+     * @param string $id
+     * @return mixed
+     */
+    public function get($id)
+    {
+        return $this->offsetGet($id);
+    }
+
+    /**
+     * @param string $id
+     * @return bool
+     */
+    public function has($id)
+    {
+        return $this->offsetExists($id);
+    }
 }

@@ -9,9 +9,6 @@
 
 namespace MadeInItalySLC\WP\Plugin;
 
-use MadeInItalySLC\WP\Plugin\Providers\ServiceProvider;
-use Psr\Container\ContainerInterface;
-
 if (\class_exists('PluginFactory')) return;
 
 /**
@@ -23,11 +20,10 @@ class PluginFactory
 {
     /**
      * @param string $slug
-     * @param string $filename
-     * @param ContainerInterface|null $container
+     * @param string|null $filename
      * @return Plugin
      */
-	public static function create(string $slug, string $filename, ContainerInterface $container = null)
+	public static function create(string $slug, string $filename = null)
 	{
 		// Use the calling file as the main plugin file.
 		if (!$filename) {
@@ -35,21 +31,12 @@ class PluginFactory
 			$filename = $backtrace[0]['file'];
 		}
 
-		if (!$container) {
-		    $container = new \League\Container\Container();
-
-		    $container->addServiceProvider(new ServiceProvider($filename, $slug));
-        }
-
-		$plugin = (new Plugin())
-			->setBasename(plugin_basename($filename))
-			->setDirectory(plugin_dir_path($filename))
-			->setFile($filename)
-			->setSlug($slug)
-			->setUrl(plugin_dir_url($filename));
-
-		$plugin->setContainer($container);
-
-		return $plugin;
+		return new Plugin([
+            'plugin.basename' => plugin_basename($filename),
+            'plugin.directory' => plugin_dir_path($filename),
+            'plugin.filename' => $filename,
+            'plugin.slug' => $slug,
+            'plugin.url' => plugin_dir_url($filename)
+        ]);
 	}
 }

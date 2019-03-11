@@ -16,9 +16,9 @@ if (\class_exists('AbstractHookProvider')) return;
  *
  * @package MadeInItalySLC\WP\Plugin
  */
-abstract class AbstractHookProvider implements HookProviderInterface, PluginAwareInterface
+abstract class AbstractHookProvider implements HookProviderInterface
 {
-	use HooksTrait, PluginAwareTrait;
+	use HooksTrait;
 
 	/**
 	 * Registers hooks for the plugin.

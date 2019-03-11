@@ -2,18 +2,16 @@
 /**
  * Internationalization provider.
  *
- * @package   MadeInItalySLC\WP\Plugin
+ * @package   MadeInItalySLC\WP\Plugin\Hooks
  * @copyright Copyright (c) 2015 Cedaro, LLC
  * @license   MIT
  */
 
 namespace MadeInItalySLC\WP\Plugin\Hooks;
 
-use MadeInItalySLC\WP\Plugin\HookProviderInterface;
-use MadeInItalySLC\WP\Plugin\HooksTrait;
-use MadeInItalySLC\WP\Plugin\Plugin;
-use MadeInItalySLC\WP\Plugin\PluginAwareInterface;
-use MadeInItalySLC\WP\Plugin\PluginAwareTrait;
+use MadeInItalySLC\WP\Plugin\AbstractHookProvider;
+use MadeInItalySLC\WP\Plugin\ContainerAwareInterface;
+use MadeInItalySLC\WP\Plugin\ContainerAwareTrait;
 
 if (\class_exists('I18n')) return;
 
@@ -22,9 +20,9 @@ if (\class_exists('I18n')) return;
  *
  * @package MadeInItalySLC\WP\Plugin\Hooks
  */
-class I18n implements PluginAwareInterface, HookProviderInterface
+class I18n extends AbstractHookProvider implements ContainerAwareInterface
 {
-	use HooksTrait, PluginAwareTrait;
+	use ContainerAwareTrait;
 
 	/**
 	 * Register hooks.
@@ -45,11 +43,8 @@ class I18n implements PluginAwareInterface, HookProviderInterface
 	 */
 	protected function loadTextDomain()
 	{
-	    /** @var Plugin $plugin */
-	    $plugin = $this->getPlugin();
+	    $plugin_rel_path = dirname($this->getContainer()->get('plugin.basename')) . '/languages';
 
-		$plugin_rel_path = dirname($plugin->getContainer()->get('plugin.basename')) . '/languages';
-
-		load_plugin_textdomain($plugin->getContainer()->get('plugin.slug'), false, $plugin_rel_path);
+		load_plugin_textdomain($this->getContainer()->get('plugin.slug'), false, $plugin_rel_path);
 	}
 }

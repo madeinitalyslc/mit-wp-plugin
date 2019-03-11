@@ -3,46 +3,30 @@
 namespace MadeInItalySLC\WP\Plugin\Providers;
 
 use Dotenv\Dotenv;
-use League\Container\Container;
-use League\Container\ServiceProvider\AbstractServiceProvider;
+use MadeInItalySLC\WP\Plugin\ContainerAwareTrait;
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 
-if (\class_exists('PhpDotEnvProvider')) {
-    return;
-}
+if (\class_exists('PhpDotEnvProvider')) return;
 
 /**
  * Class PhpDotEnvProvider.
  */
-class PhpDotEnvProvider extends AbstractServiceProvider
+class PhpDotEnvProvider implements ServiceProviderInterface
 {
-    /**
-     * @var array
-     */
-    protected $provides = [
-        'php_dot_env'
-    ];
-
-    private $directory;
-
-    public function __construct($directory)
-    {
-        $this->directory = $directory;
-    }
+    use ContainerAwareTrait;
 
     /**
      * {@inheritdoc}
      */
-    public function register()
+    public function register(Container $container)
     {
-        /** @var Container $container */
-        $container = $this->getContainer();
-
-        $container->add('php_dot_env', function () {
-            $dotenv = Dotenv::create($this->directory);
+        $container['php_dot_env'] = function ($c) {
+            $dotenv = Dotenv::create($c['plugin.directory']);
 
             $dotenv->load();
 
             return $dotenv;
-        });
+        };
     }
 }
