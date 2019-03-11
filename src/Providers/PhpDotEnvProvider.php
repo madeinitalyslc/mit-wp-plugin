@@ -3,16 +3,15 @@
 namespace MadeInItalySLC\WP\Plugin\Providers;
 
 use Dotenv\Dotenv;
-use MadeInItalySLC\WP\Plugin\Plugin;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-if (\class_exists('PhpDotEnvProvider')) return;
+if (\class_exists('PhpDotEnvProvider')) {
+    return;
+}
 
 /**
- * Class PhpDotEnvProvider
- *
- * @package MadeInItalySLC\WP\Plugin\Providers
+ * Class PhpDotEnvProvider.
  */
 class PhpDotEnvProvider implements ServiceProviderInterface
 {
@@ -21,14 +20,11 @@ class PhpDotEnvProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        $pimple['services.php_dot_env'] = function (Container $container) {
-            /** @var Plugin $plugin */
-            $plugin = $container['plugin'];
-            
-            $dotenv = Dotenv::create($plugin->getDirectory());
-            
+        $pimple['services.php_dot_env'] = function (Container $c) {
+            $dotenv = Dotenv::create($c['plugin.directory']);
+
             $dotenv->load();
-            
+
             return $dotenv;
         };
     }
