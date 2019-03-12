@@ -1,13 +1,22 @@
 <?php
 
-namespace MadeInItalySLC\WP\Plugin\Providers;
+/**
+ * PHP Dot Env Provider.
+ *
+ * @author Pereira Pulido Nuno Ricardo <r.pereira@madeinitalyslc.it>
+ * @copyright 2019 Made In Italy SLC
+ */
+
+namespace MadeInItalySLC\WP\Plugin\Provider;
 
 use Dotenv\Dotenv;
 use MadeInItalySLC\WP\Plugin\ContainerAwareTrait;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
-if (\class_exists('PhpDotEnvProvider')) return;
+if (\class_exists('PhpDotEnvProvider')) {
+    return;
+}
 
 /**
  * Class PhpDotEnvProvider.

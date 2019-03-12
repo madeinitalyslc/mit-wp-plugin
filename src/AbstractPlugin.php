@@ -2,12 +2,14 @@
 /**
  * Common plugin functionality.
  *
- * @package   MadeInItalySLC\WP\Plugin
- * @author    John P. Bloch
- * @author    Brady Vercher
- * @link      https://github.com/johnpbloch/wordpress-dev
+ * @author John P. Bloch
+ * @author Brady Vercher
+ * @author Pereira Pulido Nuno Ricardo <r.pereira@madeinitalyslc.it>
+ *
+ * @see https://github.com/johnpbloch/wordpress-dev
+ *
  * @copyright Copyright (c) 2015 Cedaro, LLC
- * @license   MIT
+ * @copyright 2019 Made In Italy SLC
  */
 
 namespace MadeInItalySLC\WP\Plugin;
@@ -15,12 +17,12 @@ namespace MadeInItalySLC\WP\Plugin;
 use Pimple\Container;
 use Psr\Container\ContainerInterface;
 
-if (\class_exists('AbstractPlugin')) return;
+if (\class_exists('AbstractPlugin')) {
+    return;
+}
 
 /**
  * Base plugin class.
- *
- * @package MadeInItalySLC\WP\Plugin
  */
 abstract class AbstractPlugin extends Container implements PluginInterface, ContainerInterface
 {
@@ -62,7 +64,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     protected $url;
 
     /**
-     * Version of the plugin
+     * Version of the plugin.
      *
      * @var string
      */
@@ -81,7 +83,8 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Set the plugin basename.
      *
-     * @param  string $basename Relative path from the main plugin directory.
+     * @param string $basename relative path from the main plugin directory
+     *
      * @return $this
      */
     public function setBasename($basename)
@@ -104,12 +107,13 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Set the plugin's directory.
      *
-     * @param  string $directory Absolute path to the main plugin directory.
+     * @param string $directory absolute path to the main plugin directory
+     *
      * @return $this
      */
     public function setDirectory($directory)
     {
-        $this->directory = rtrim($directory, '/') . '/';
+        $this->directory = rtrim($directory, '/').'/';
 
         return $this;
     }
@@ -117,12 +121,13 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Retrieve the path to a file in the plugin.
      *
-     * @param  string $path Optional. Path relative to the plugin root.
+     * @param string $path Optional. Path relative to the plugin root.
+     *
      * @return string
      */
     public function getPath($path = '')
     {
-        return $this->directory . ltrim($path, '/');
+        return $this->directory.ltrim($path, '/');
     }
 
     /**
@@ -138,7 +143,8 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Set the path to the main plugin file.
      *
-     * @param  string $file Absolute path to the main plugin file.
+     * @param string $file absolute path to the main plugin file
+     *
      * @return $this
      */
     public function setFile($file)
@@ -161,7 +167,8 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Set the plugin identifier.
      *
-     * @param  string $slug Plugin identifier.
+     * @param string $slug plugin identifier
+     *
      * @return $this
      */
     public function setSlug($slug)
@@ -174,23 +181,25 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Retrieve the URL for a file in the plugin.
      *
-     * @param  string $path Optional. Path relative to the plugin root.
+     * @param string $path Optional. Path relative to the plugin root.
+     *
      * @return string
      */
     public function getUrl($path = '')
     {
-        return $this->url . ltrim($path, '/');
+        return $this->url.ltrim($path, '/');
     }
 
     /**
      * Set the URL for plugin directory root.
      *
-     * @param  string $url URL to the root of the plugin directory.
+     * @param string $url URL to the root of the plugin directory
+     *
      * @return $this
      */
     public function setUrl($url)
     {
-        $this->url = rtrim($url, '/') . '/';
+        $this->url = rtrim($url, '/').'/';
 
         return $this;
     }
@@ -205,6 +214,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
 
     /**
      * @param string $version
+     *
      * @return $this
      */
     public function setVersion(string $version)
@@ -217,7 +227,8 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
     /**
      * Register a hook provider.
      *
-     * @param  HookProviderInterface $provider Hook provider.
+     * @param HookProviderInterface $provider hook provider
+     *
      * @return $this
      */
     public function registerHooks(HookProviderInterface $provider)
@@ -233,6 +244,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
 
     /**
      * @param string $id
+     *
      * @return mixed
      */
     public function get($id)
@@ -242,6 +254,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
 
     /**
      * @param string $id
+     *
      * @return bool
      */
     public function has($id)

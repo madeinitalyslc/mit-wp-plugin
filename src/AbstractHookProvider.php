@@ -1,27 +1,28 @@
 <?php
+
 /**
  * Base hook provider.
  *
- * @package   MadeInItalySLC\WP\Plugin
+ * @author Pereira Pulido Nuno Ricardo <r.pereira@madeinitalyslc.it>
  * @copyright Copyright (c) 2017 Cedaro, LLC
- * @license   MIT
+ * @copyright 2019 Made In Italy SLC
  */
 
 namespace MadeInItalySLC\WP\Plugin;
 
-if (\class_exists('AbstractHookProvider')) return;
+if (\class_exists('AbstractHookProvider')) {
+    return;
+}
 
 /**
  * Base hook provider class.
- *
- * @package MadeInItalySLC\WP\Plugin
  */
 abstract class AbstractHookProvider implements HookProviderInterface
 {
-	use HooksTrait;
+    use HooksTrait;
 
-	/**
-	 * Registers hooks for the plugin.
-	 */
-	abstract public function registerHooks();
+    /**
+     * Registers hooks for the plugin.
+     */
+    abstract public function registerHooks();
 }

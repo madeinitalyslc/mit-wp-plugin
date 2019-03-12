@@ -1,22 +1,22 @@
 <?php
+
 /**
  * Generic plugin implementation.
  *
- * @package   MadeInItalySLC\WP\Plugin
+ * @author Pereira Pulido Nuno Ricardo <r.pereira@madeinitalyslc.it>
  * @copyright Copyright (c) 2015 Cedaro, LLC
- * @license   MIT
+ * @copyright 2019 Made In Italy SLC
  */
 
 namespace MadeInItalySLC\WP\Plugin;
 
-if (\class_exists('Plugin')) return;
+if (\class_exists('Plugin')) {
+    return;
+}
 
 /**
  * Main plugin class.
- *
- * @package MadeInItalySLC\WP\Plugin
  */
 class Plugin extends AbstractPlugin
 {
-
 }

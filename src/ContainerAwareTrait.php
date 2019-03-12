@@ -1,25 +1,28 @@
 <?php
+
 /**
  * Container aware trait.
  *
  * Container implementation courtesy of Slim 3.
  *
- * @package   MadeInItalySLC\WP\Plugin
- * @link      https://github.com/slimphp/Slim/blob/e80b0f8b4d23e165783e8bf241b31c35272b0e28/Slim/App.php
+ * @author Pereira Pulido Nuno Ricardo <r.pereira@madeinitalyslc.it>
+ *
+ * @see https://github.com/slimphp/Slim/blob/e80b0f8b4d23e165783e8bf241b31c35272b0e28/Slim/App.php
+ *
  * @copyright Copyright (c) 2015 Cedaro, LLC
- * @license   MIT
+ * @copyright 2019 Made In Italy SLC
  */
 
 namespace MadeInItalySLC\WP\Plugin;
 
 use Psr\Container\ContainerInterface;
 
-if (\trait_exists('ContainerAwareTrait', true)) return;
+if (\trait_exists('ContainerAwareTrait', true)) {
+    return;
+}
 
 /**
  * Container aware trait.
- *
- * @package MadeInItalySLC\WP\Plugin
  */
 trait ContainerAwareTrait
 {
@@ -33,7 +36,8 @@ trait ContainerAwareTrait
     /**
      * Proxy access to container services.
      *
-     * @param  string $name Service name.
+     * @param string $name service name
+     *
      * @return mixed
      */
     public function __get($name)
@@ -44,7 +48,8 @@ trait ContainerAwareTrait
     /**
      * Whether a container service exists.
      *
-     * @param  string $name Service name.
+     * @param string $name service name
+     *
      * @return bool
      */
     public function __isset($name)
@@ -56,8 +61,9 @@ trait ContainerAwareTrait
      * Calling a non-existant method on the class checks to see if there's an
      * item in the container that is callable and if so, calls it.
      *
-     * @param  string $method Method name.
-     * @param  array  $args   Method arguments.
+     * @param string $method method name
+     * @param array  $args   method arguments
+     *
      * @return mixed
      */
     public function __call($method, $args)
@@ -83,8 +89,10 @@ trait ContainerAwareTrait
     /**
      * Set the container.
      *
-     * @param  ContainerInterface $container Dependency injection container.
-     * @throws \InvalidArgumentException when no container is provided that implements ContainerInterface.
+     * @param ContainerInterface $container dependency injection container
+     *
+     * @throws \InvalidArgumentException when no container is provided that implements ContainerInterface
+     *
      * @return $this
      */
     public function setContainer(ContainerInterface $container)
