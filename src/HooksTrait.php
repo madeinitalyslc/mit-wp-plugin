@@ -25,6 +25,8 @@ if (\trait_exists('HooksTrait', true)) {
  * Hooks trait.
  *
  * @see https://github.com/johnpbloch/wordpress-dev/blob/master/src/Hooks.php
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 trait HooksTrait
 {

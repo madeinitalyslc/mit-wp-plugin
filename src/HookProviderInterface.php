@@ -16,6 +16,8 @@ if (\interface_exists('HookProviderInterface')) {
 
 /**
  * Hook provider interface.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 interface HookProviderInterface
 {

@@ -16,6 +16,8 @@ if (\class_exists('PluginFactory')) {
 
 /**
  * Plugin factory class.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 class PluginFactory
 {

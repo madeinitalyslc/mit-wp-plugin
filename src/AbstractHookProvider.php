@@ -16,6 +16,8 @@ if (\class_exists('AbstractHookProvider')) {
 
 /**
  * Base hook provider class.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 abstract class AbstractHookProvider implements HookProviderInterface
 {

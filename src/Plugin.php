@@ -16,6 +16,8 @@ if (\class_exists('Plugin')) {
 
 /**
  * Main plugin class.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 class Plugin extends AbstractPlugin
 {

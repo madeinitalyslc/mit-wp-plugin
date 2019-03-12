@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Common plugin functionality.
  *
@@ -22,7 +23,9 @@ if (\class_exists('AbstractPlugin')) {
 }
 
 /**
- * Base plugin class.
+ * Class AbstractPlugin
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 abstract class AbstractPlugin extends Container implements PluginInterface, ContainerInterface
 {
@@ -113,7 +116,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
      */
     public function setDirectory($directory)
     {
-        $this->directory = rtrim($directory, '/').'/';
+        $this->directory = rtrim($directory, '/') . '/';
 
         return $this;
     }
@@ -127,7 +130,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
      */
     public function getPath($path = '')
     {
-        return $this->directory.ltrim($path, '/');
+        return $this->directory . ltrim($path, '/');
     }
 
     /**
@@ -187,7 +190,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
      */
     public function getUrl($path = '')
     {
-        return $this->url.ltrim($path, '/');
+        return $this->url . ltrim($path, '/');
     }
 
     /**
@@ -199,7 +202,7 @@ abstract class AbstractPlugin extends Container implements PluginInterface, Cont
      */
     public function setUrl($url)
     {
-        $this->url = rtrim($url, '/').'/';
+        $this->url = rtrim($url, '/') . '/';
 
         return $this;
     }

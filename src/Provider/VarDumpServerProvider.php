@@ -18,6 +18,8 @@ if (\class_exists('VarDumperServerProvider')) {
 
 /**
  * Class VarDumpServerProvider.
+ *
+ * @package MadeInItalySLC\WP\Plugin\Provider
  */
 class VarDumpServerProvider implements ServiceProviderInterface
 {

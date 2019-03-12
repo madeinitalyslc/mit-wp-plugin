@@ -17,6 +17,8 @@ if (\class_exists('Container')) {
 
 /**
  * Container class.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 class Container extends PimpleContainer
 {

@@ -19,6 +19,8 @@ if (\class_exists('I18n')) {
 
 /**
  * Class I18n.
+ *
+ * @package MadeInItalySLC\WP\Plugin\Provider\Hook
  */
 class I18n extends AbstractHookProvider implements ContainerAwareInterface
 {
@@ -43,7 +45,7 @@ class I18n extends AbstractHookProvider implements ContainerAwareInterface
      */
     protected function loadTextDomain()
     {
-        $plugin_rel_path = dirname($this->getContainer()->get('plugin.basename')).'/languages';
+        $plugin_rel_path = dirname($this->getContainer()->get('plugin.basename')) . '/languages';
 
         load_plugin_textdomain($this->getContainer()->get('plugin.slug'), false, $plugin_rel_path);
     }

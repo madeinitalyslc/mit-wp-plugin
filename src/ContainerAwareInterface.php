@@ -17,6 +17,8 @@ if (\interface_exists('ContainerAwareInterface')) {
 
 /**
  * Interface ContainerAwareInterface.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 interface ContainerAwareInterface
 {

@@ -20,6 +20,8 @@ if (\class_exists('PhpDotEnvProvider')) {
 
 /**
  * Class PhpDotEnvProvider.
+ *
+ * @package MadeInItalySLC\WP\Plugin\Provider
  */
 class PhpDotEnvProvider implements ServiceProviderInterface
 {

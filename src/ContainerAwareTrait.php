@@ -23,6 +23,8 @@ if (\trait_exists('ContainerAwareTrait', true)) {
 
 /**
  * Container aware trait.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 trait ContainerAwareTrait
 {

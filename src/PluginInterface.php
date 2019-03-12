@@ -21,6 +21,8 @@ if (\interface_exists('PluginInterface')) {
 
 /**
  * Plugin interface.
+ *
+ * @package MadeInItalySLC\WP\Plugin
  */
 interface PluginInterface
 {
